@@ -24,14 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/cache@v4
-        with:
-          path: .upgrade-impact
-          key: upgrade-impact-${{ github.repository_id }}-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
-          restore-keys: |
-            upgrade-impact-${{ github.repository_id }}-${{ github.event.pull_request.number }}-
-
-      - uses: mohdrumman1/upgrade-impact@v1-beta
+      - uses: mohdrumman1/upgrade-impact@v1-beta.2
         with:
           github-token: ${{ github.token }}
           openrouter-api-key: ${{ secrets.OPENROUTER_API_KEY }}
@@ -47,6 +40,6 @@ Add `OPENROUTER_API_KEY` as an Actions secret. It is used only when deterministi
 - Sensitive paths excluded and likely credentials redacted before model processing.
 - Findings require both exact repository lines and official release evidence.
 - OpenRouter OpenAI Mini is graph-verified; default hard cap US$0.02/report, absolute cap US$0.05.
-- Pipeline artifacts are revision-keyed, resumable, and cacheable.
+- Pipeline artifacts are revision-keyed and resumable within the runner job. The least-privilege template intentionally avoids Actions write permission for cross-run cache persistence.
 
 See [security](docs/SECURITY.md), [architecture](docs/ARCHITECTURE.md), and [testing](docs/TESTING.md) for implementation details.
