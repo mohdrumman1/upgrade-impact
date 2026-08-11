@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Setup and troubleshooting
+    url: https://github.com/mohdrumman1/upgrade-impact/blob/main/docs/ONBOARDING.md
+    about: Use the self-service guide before opening a bug report.

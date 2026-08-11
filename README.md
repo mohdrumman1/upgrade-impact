@@ -6,6 +6,8 @@ It compares changed manifests, searches bounded repository usage, acquires offic
 
 ## Install
 
+The current self-service path uses your OpenRouter account. Hosted beta access is invite-only.
+
 Create `.github/workflows/upgrade-impact.yml`:
 
 ```yaml
@@ -24,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: mohdrumman1/upgrade-impact@v1-beta.3
+      - uses: mohdrumman1/upgrade-impact@v1-beta.4
         with:
           github-token: ${{ github.token }}
           openrouter-api-key: ${{ secrets.OPENROUTER_API_KEY }}
@@ -33,6 +35,8 @@ jobs:
 Add `OPENROUTER_API_KEY` as an Actions secret. It is used only when deterministic applicability edges require model synthesis. Safe omissions and deterministic preflight reports cost nothing and do not require the key.
 
 Hosted beta users can replace `openrouter-api-key` with `hosted-endpoint` and `license-key`. The runner still performs repository acquisition and secret filtering; only bounded graph-filtered evidence reaches the hosted API, and the Action verifies the returned report locally before posting it.
+
+See the [five-minute onboarding and troubleshooting guide](docs/ONBOARDING.md) for both modes.
 
 ## Safety and cost
 

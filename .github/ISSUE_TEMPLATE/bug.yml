@@ -1,0 +1,39 @@
+name: Bug report
+description: Report a reproducible UpgradeImpact Action failure without sharing credentials.
+title: "bug: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Never paste API keys, license keys, private source, or unredacted logs.
+  - type: input
+    id: action-version
+    attributes:
+      label: Action version
+      placeholder: v1-beta.4
+    validations:
+      required: true
+  - type: dropdown
+    id: access-mode
+    attributes:
+      label: Model access mode
+      options:
+        - Bring-your-own OpenRouter key
+        - Hosted beta
+        - Deterministic/no model call
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+      description: Include only sanitized error text and a public pull-request URL when possible.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, private source, and sensitive log content.
+          required: true
