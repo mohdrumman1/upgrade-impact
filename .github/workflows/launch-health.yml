@@ -23,4 +23,6 @@ jobs:
         run: |
           latest=$(gh api repos/mohdrumman1/upgrade-impact/releases/latest --jq .tag_name)
           test "$latest" = "v1-beta.4"
-          curl --fail --silent --show-error --max-time 15 https://github.com/marketplace/actions/upgradeimpact | grep -q 'UpgradeImpact'
+          marketplace=$(curl --fail --silent --show-error --max-time 15 https://github.com/marketplace/actions/upgradeimpact)
+          grep -q 'UpgradeImpact' <<<"$marketplace"
+          grep -q "$latest" <<<"$marketplace"
