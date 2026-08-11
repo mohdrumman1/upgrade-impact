@@ -11,6 +11,12 @@ inputs:
   openrouter-api-key:
     description: OpenRouter API key used only when deterministic applicability edges require synthesis.
     required: false
+  hosted-endpoint:
+    description: UpgradeImpact hosted API base URL. Requires license-key.
+    required: false
+  license-key:
+    description: UpgradeImpact hosted beta key. Store this value as a GitHub Actions secret.
+    required: false
   max-usd:
     description: Hard maximum model spend per report, capped by the Action at US$0.05.
     required: false

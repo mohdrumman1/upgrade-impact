@@ -17,6 +17,8 @@ try {
   const event = parsePullRequestEvent(JSON.parse(await readFile(eventPath, "utf8")));
   const githubToken = input("github-token") || requiredEnvironment("GITHUB_TOKEN");
   const openRouterApiKey = input("openrouter-api-key") || process.env.OPENROUTER_API_KEY;
+  const hostedEndpoint = input("hosted-endpoint");
+  const hostedToken = input("license-key");
   const stateDirectory = resolve(input("state-directory") || ".upgrade-impact");
   const maximumUsd = positiveNumber(input("max-usd") || "0.02", "max-usd");
   const github = new GitHubApi(githubToken, process.env.GITHUB_API_URL);
@@ -27,6 +29,8 @@ try {
     stateDirectory,
     githubToken,
     ...(openRouterApiKey ? { openRouterApiKey } : {}),
+    ...(hostedEndpoint ? { hostedEndpoint } : {}),
+    ...(hostedToken ? { hostedToken } : {}),
     ...(process.env.GITHUB_API_URL ? { githubApiUrl: process.env.GITHUB_API_URL } : {}),
     maximumUsd,
     expectedHeadSha: event.pull_request.head.sha,

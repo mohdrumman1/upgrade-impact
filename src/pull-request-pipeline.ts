@@ -7,6 +7,7 @@ import {
   buildApplicabilityAnalysisInput,
   buildApplicabilityGraph,
   renderApplicabilityPrompt,
+  type ApplicabilityAnalysisInput,
 } from "./applicability.ts";
 import type { AnalysisDependencyInput, AnalysisInput } from "./analysis-input.ts";
 import { applicabilitySearchTargets, isRelevantConceptReference } from "./concept-evidence.ts";
@@ -21,6 +22,7 @@ import {
 } from "./evidence.ts";
 import { analysisRunId } from "./github-event.ts";
 import { GitHubApi, type GitHubPullRequest } from "./github-api.ts";
+import { requestHostedAnalysis } from "./hosted-client.ts";
 import { compareManifests, parseManifest } from "./manifest.ts";
 import { analysePrepared, type PreparedAnalysisMetadata } from "./prepared-analysis.ts";
 import { buildPreflightFindings } from "./preflight.ts";
@@ -66,6 +68,8 @@ export type PullRequestPipelineOptions = {
   stateDirectory: string;
   githubToken: string;
   openRouterApiKey?: string;
+  hostedEndpoint?: string;
+  hostedToken?: string;
   githubApiUrl?: string;
   provider?: string;
   maximumUsd?: number;
@@ -170,18 +174,39 @@ export async function runPublicPullRequestPipeline(
     await writeFile(metadataPath, `${JSON.stringify({ skipped: "no-applicability-edges", spendUsd: 0 }, null, 2)}\n`);
     return result(null, false);
   }
-  if (!options.openRouterApiKey) throw new Error("Missing OPENROUTER_API_KEY");
-  const model = await analysePrepared({
-    promptPath: prepared.promptPath,
-    graphPath: prepared.graphPath,
-    preflightPath: prepared.preflightPath,
-    outputPath: reportPath,
-    metadataPath,
-    provider: options.provider ?? "openrouter-openai-mini",
-    maximumUsd: options.maximumUsd ?? 0.02,
-    apiKey: options.openRouterApiKey,
-    ...(options.notice ? { notice: options.notice } : {}),
-  });
+  if ((options.hostedEndpoint && !options.hostedToken) || (!options.hostedEndpoint && options.hostedToken)) {
+    throw new Error("Hosted endpoint and license key must be configured together");
+  }
+  let model: PreparedAnalysisMetadata;
+  if (options.hostedEndpoint && options.hostedToken) {
+    const analysisInput = await readOptionalJson<ApplicabilityAnalysisInput>(prepared.analysisInputPath);
+    if (!analysisInput) throw new Error("Invalid hosted analysis input artifact");
+    const hosted = await requestHostedAnalysis({
+      endpoint: options.hostedEndpoint,
+      token: options.hostedToken,
+      requestId: runId,
+      analysisInput,
+      graph: prepared.graph,
+    });
+    await Promise.all([
+      writeFile(reportPath, renderAnalysisMarkdown(hosted.analysis, prepared.preflight)),
+      writeJson(metadataPath, hosted.metadata),
+    ]);
+    model = hosted.metadata;
+  } else {
+    if (!options.openRouterApiKey) throw new Error("Missing hosted license key or OPENROUTER_API_KEY");
+    model = await analysePrepared({
+      promptPath: prepared.promptPath,
+      graphPath: prepared.graphPath,
+      preflightPath: prepared.preflightPath,
+      outputPath: reportPath,
+      metadataPath,
+      provider: options.provider ?? "openrouter-openai-mini",
+      maximumUsd: options.maximumUsd ?? 0.02,
+      apiKey: options.openRouterApiKey,
+      ...(options.notice ? { notice: options.notice } : {}),
+    });
+  }
   return result(model, false);
 
   function result(model: PreparedAnalysisMetadata | null, cacheHit: boolean): PullRequestPipelineResult {
@@ -349,7 +374,7 @@ async function prepareAnalysis(
     writeJson(preflightPath, { findings: preflight }),
     writeFile(promptPath, prompt),
   ]);
-  return { graph, preflight, promptPath, graphPath, preflightPath };
+  return { graph, preflight, promptPath, graphPath, preflightPath, analysisInputPath: join(directory, "analysis-input-v2.json") };
 }
 
 async function addConceptDirectedEvidence(
@@ -557,11 +582,14 @@ async function readPreparedArtifacts(directory: string): Promise<{
   promptPath: string;
   graphPath: string;
   preflightPath: string;
+  analysisInputPath: string;
 } | null> {
   const promptPath = join(directory, "analysis-prompt-v2.md");
   const graphPath = join(directory, "applicability-graph.json");
   const preflightPath = join(directory, "preflight.json");
-  if (!(await exists(promptPath)) || !(await exists(graphPath)) || !(await exists(preflightPath))) {
+  const analysisInputPath = join(directory, "analysis-input-v2.json");
+  if (!(await exists(promptPath)) || !(await exists(graphPath)) || !(await exists(preflightPath)) ||
+    !(await exists(analysisInputPath))) {
     return null;
   }
   const [graph, preflight] = await Promise.all([
@@ -569,7 +597,7 @@ async function readPreparedArtifacts(directory: string): Promise<{
     readOptionalJson<{ findings: ReturnType<typeof buildPreflightFindings> }>(preflightPath),
   ]);
   if (!graph || !preflight || !Array.isArray(preflight.findings)) return null;
-  return { graph, preflight: preflight.findings, promptPath, graphPath, preflightPath };
+  return { graph, preflight: preflight.findings, promptPath, graphPath, preflightPath, analysisInputPath };
 }
 
 function parsePreparedMetadata(value: unknown): PreparedAnalysisMetadata | null {
