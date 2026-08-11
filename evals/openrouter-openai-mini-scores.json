@@ -1,0 +1,23 @@
+{
+  "provider": "openrouter-openai-mini",
+  "model": "openai/gpt-5.4-mini",
+  "rubric": ["correctness", "relevance", "actionability", "evidence", "brevity"],
+  "maximumPerCriterion": 2,
+  "cases": [
+    { "id": "next-14-to-15", "scores": [2, 2, 0, 2, 2], "total": 8, "useful": false, "unsupportedMaterialClaim": false, "note": "Correct evidence-gap omission." },
+    { "id": "concurrently-8-to-9", "scores": [1, 2, 2, 1, 1], "total": 7, "useful": true, "unsupportedMaterialClaim": true, "note": "Node-floor check is useful, but interruption behavior is applied without observed --max-processes." },
+    { "id": "rimraf-5-to-6", "scores": [2, 2, 2, 2, 2], "total": 10, "useful": true, "unsupportedMaterialClaim": false, "note": "Correctly links the Node 20 floor to clean-script usage." },
+    { "id": "actions-github-8-to-9", "scores": [2, 2, 2, 2, 2], "total": 10, "useful": true, "unsupportedMaterialClaim": false, "note": "Correctly catches the removed ncc dependency still used by build." },
+    { "id": "shared-tsconfig-major", "scores": [2, 2, 2, 2, 2], "total": 10, "useful": true, "unsupportedMaterialClaim": false, "note": "Specific preset and compiler compatibility check." },
+    { "id": "otel-node-large-zero-major", "scores": [1, 1, 1, 1, 1], "total": 5, "useful": false, "unsupportedMaterialClaim": true, "note": "Turns unobserved declarative configuration and startup defaults into findings." },
+    { "id": "storybook-6-to-7", "scores": [1, 1, 1, 1, 1], "total": 5, "useful": false, "unsupportedMaterialClaim": true, "note": "Creates a generic major-upgrade finding despite no applicable official change evidence." },
+    { "id": "mozilla-otel-group", "scores": [1, 1, 1, 1, 1], "total": 5, "useful": false, "unsupportedMaterialClaim": true, "note": "Generic tracing-change possibilities are not tied to supplied release changes." },
+    { "id": "vite-react-plugin-major", "scores": [2, 2, 2, 1, 2], "total": 9, "useful": true, "unsupportedMaterialClaim": false, "note": "Relevant dedupe and Node-floor checks, but misses stale generator versions." },
+    { "id": "typescript-5-to-6", "scores": [1, 2, 2, 1, 1], "total": 7, "useful": true, "unsupportedMaterialClaim": false, "note": "Useful scoped validation but generic because version-specific evidence is sparse." },
+    { "id": "react-native-safe-area-major", "scores": [2, 2, 2, 1, 1], "total": 8, "useful": true, "unsupportedMaterialClaim": false, "note": "Correct compatibility-floor result with a broader layout check." },
+    { "id": "agents-large-zero-major", "scores": [1, 1, 1, 1, 1], "total": 5, "useful": false, "unsupportedMaterialClaim": true, "note": "Implies MCP construction compatibility risk while the supplied notes retain the legacy path." },
+    { "id": "dependabot-dev-group", "scores": [2, 2, 2, 0, 1], "total": 7, "useful": true, "unsupportedMaterialClaim": false, "note": "Useful test-pool option check; Vite material is generic because its excerpt is empty." },
+    { "id": "biome-patch", "scores": [2, 1, 2, 1, 1], "total": 7, "useful": true, "unsupportedMaterialClaim": false, "note": "Connects changes to actual tool commands but not demonstrated source patterns." },
+    { "id": "radix-switch-patch", "scores": [2, 2, 0, 2, 2], "total": 8, "useful": false, "unsupportedMaterialClaim": false, "note": "Correct safe omission." }
+  ]
+}

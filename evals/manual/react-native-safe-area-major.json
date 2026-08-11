@@ -1,0 +1,23 @@
+{
+  "risk": "low",
+  "confidence": 0.96,
+  "summary": "Safe Area Context 5 requires React Native 0.74 or newer, and the mobile application declares React Native 0.76.5, so the documented major-version floor is satisfied.",
+  "findings": [
+    {
+      "title": "Declared React Native version clears the v5 floor",
+      "impact": "The v5 release raises the minimum React Native version to 0.74 without other documented breaking changes; this application declares 0.76.5 alongside the upgraded package.",
+      "repositoryEvidence": [
+        "apps/mobile/package.json:20-24"
+      ],
+      "releaseEvidence": [
+        "https://github.com/appandflow/react-native-safe-area-context/releases/tag/v5.0.0"
+      ],
+      "recommendedChecks": [
+        "Install the mobile workspace and smoke-test safe-area layout on its supported iOS and Android runtimes; no React Native upgrade is required by the documented floor."
+      ]
+    }
+  ],
+  "omittedConcerns": [
+    "Web edges behavior and tvOS/macOS fixes are omitted because the supplied repository evidence does not show those targets or SafeAreaView usage."
+  ]
+}

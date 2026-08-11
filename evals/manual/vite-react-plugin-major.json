@@ -1,0 +1,26 @@
+{
+  "risk": "medium",
+  "confidence": 0.9,
+  "summary": "The CLI and console directly load plugin-react, but two project generators still emit version 4 after the workspace moves to version 5.",
+  "findings": [
+    {
+      "title": "Generated projects remain on plugin-react 4",
+      "impact": "The workspace upgrade exercises plugin-react 5 in the CLI and console, while both generators still write ^4.2.1. Newly generated applications and plugins will therefore remain on the previous major and will not validate the upgraded dependency path.",
+      "repositoryEvidence": [
+        "packages/cli/src/utils/app-generator.ts:394-398",
+        "packages/create-plugin/src/index.ts:160-164",
+        "packages/cli/src/commands/build.ts:8-12",
+        "apps/console/vite.config.ts:1-4"
+      ],
+      "releaseEvidence": [
+        "https://github.com/vitejs/vite-plugin-react/releases/tag/plugin-react%405.0.0-beta.0"
+      ],
+      "recommendedChecks": [
+        "Generate one application and one plugin, install them from scratch, and decide explicitly whether their templates should move to plugin-react 5 with the workspace."
+      ]
+    }
+  ],
+  "omittedConcerns": [
+    "The Oxc and disableOxcRecommendation change is omitted because the supplied repository evidence does not show rolldown-vite, plugin-react-oxc, or that option."
+  ]
+}

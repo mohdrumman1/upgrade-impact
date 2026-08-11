@@ -1,0 +1,10 @@
+{
+  "risk": "unknown",
+  "confidence": 0.41,
+  "summary": "The repository enables Storybook Controls, but the only bounded official excerpt describes two 7.5.1 patch fixes and cannot support conclusions about the major 6-to-7 migration.",
+  "findings": [],
+  "omittedConcerns": [
+    "Storybook 7 migration requirements are omitted because no bounded official major-version migration evidence was acquired.",
+    "The Angular schema fix and Windows theme postinstall fix are omitted because the repository excerpts do not show Angular usage, theme postinstall behavior, or Windows execution."
+  ]
+}

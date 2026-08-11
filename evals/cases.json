@@ -1,0 +1,17 @@
+[
+  { "id": "next-14-to-15", "repository": "ATran2000/myflix", "pullRequest": 14, "reason": "Framework major upgrade" },
+  { "id": "concurrently-8-to-9", "repository": "nekofar/virastar", "pullRequest": 42, "reason": "CLI/build-tool major upgrade" },
+  { "id": "rimraf-5-to-6", "repository": "nekofar/virastar", "pullRequest": 37, "reason": "Build-tool major upgrade" },
+  { "id": "actions-github-8-to-9", "repository": "fr12k/terraform-monorepo-action", "pullRequest": 138, "reason": "Runtime library major upgrade" },
+  { "id": "shared-tsconfig-major", "repository": "bbeesley/gha-auto-dependabot-rebase", "pullRequest": 373, "reason": "Configuration package major upgrade" },
+  { "id": "otel-node-large-zero-major", "repository": "intercom/opentelemetry-js", "pullRequest": 21, "reason": "Large pre-1.0 version span" },
+  { "id": "storybook-6-to-7", "repository": "Woodpile37/system-test-matrix", "pullRequest": 54, "reason": "UI tooling major upgrade in a subdirectory" },
+  { "id": "mozilla-otel-group", "repository": "mozilla/fxa", "pullRequest": 20656, "reason": "Grouped monorepo dependency update" },
+  { "id": "vite-react-plugin-major", "repository": "objectstack-ai/objectui", "pullRequest": 114, "reason": "Build plugin major upgrade" },
+  { "id": "typescript-5-to-6", "repository": "Gabo1552/AppCasasParticulares", "pullRequest": 8, "reason": "Compiler major upgrade" },
+  { "id": "react-native-safe-area-major", "repository": "Gabo1552/AppCasasParticulares", "pullRequest": 6, "reason": "React Native library major upgrade" },
+  { "id": "agents-large-zero-major", "repository": "TightknitAI/slack-block-kit-validator", "pullRequest": 70, "reason": "AI library pre-1.0 upgrade" },
+  { "id": "dependabot-dev-group", "repository": "TightknitAI/slack-block-kit-validator", "pullRequest": 69, "reason": "Ten-package grouped update" },
+  { "id": "biome-patch", "repository": "leynos/vibe-coder", "pullRequest": 173, "reason": "Low-risk patch control case" },
+  { "id": "radix-switch-patch", "repository": "leynos/vibe-coder", "pullRequest": 171, "reason": "UI package patch control case" }
+]

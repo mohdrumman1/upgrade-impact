@@ -1,0 +1,25 @@
+{
+  "risk": "medium",
+  "confidence": 0.81,
+  "summary": "The worker tests directly use Cloudflare's Vitest pool, whose 0.20.0 release removes several Miniflare override options; the supplied Vite notes do not describe a repository-specific change.",
+  "findings": [
+    {
+      "title": "Check Cloudflare test-pool overrides",
+      "impact": "The worker Vitest configuration imports cloudflareTest directly, so any use of the removed Miniflare override options in that configuration would block the test upgrade.",
+      "repositoryEvidence": [
+        "worker/vitest.config.ts:1",
+        "worker/package.json:13"
+      ],
+      "releaseEvidence": [
+        "https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/vitest-pool-workers%400.20.0"
+      ],
+      "recommendedChecks": [
+        "Inspect the complete worker Vitest configuration for wrappedBindings, cacheWarnUsage, fetchMock, containerEngine, or cache overrides, then run the existing worker test command."
+      ]
+    }
+  ],
+  "omittedConcerns": [
+    "Specific Vite 8.1-to-8.2 impacts are omitted because the bounded official excerpts only link to a changelog and contain no change details.",
+    "Cloudflare options not shown in the supplied repository excerpt are treated as a check, not claimed as current usage."
+  ]
+}

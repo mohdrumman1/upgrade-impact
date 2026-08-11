@@ -1,0 +1,26 @@
+{
+  "risk": "medium",
+  "confidence": 0.94,
+  "summary": "The worker uses legacy McpAgent with MCP SDK 1.30.0, a combination explicitly retained by Agents 0.20.1 while the package adds a separate SDK v2 server path.",
+  "findings": [
+    {
+      "title": "Legacy McpAgent path remains supported",
+      "impact": "The worker imports McpAgent from agents/mcp and pins MCP SDK 1.30.0. Agents 0.20.1 explicitly retains SDK v1 compatibility at 1.30.0 and preserves the legacy McpAgent WebSocket bridge, so this upgrade does not require moving the worker to the new v2 server entry point.",
+      "repositoryEvidence": [
+        "worker/src/mcp.ts:1-5",
+        "worker/package.json:19-23",
+        "worker/wrangler.jsonc:10-14"
+      ],
+      "releaseEvidence": [
+        "https://github.com/cloudflare/agents/releases/tag/agents%400.20.1"
+      ],
+      "recommendedChecks": [
+        "Run the worker's MCP initialize and streaming transport tests against its SQLite-backed Durable Object, keeping the legacy entry point during this dependency-only upgrade."
+      ]
+    }
+  ],
+  "omittedConcerns": [
+    "AI SDK v7 telemetry changes are omitted because no AI SDK v7 or telemetry usage appears in the supplied repository evidence.",
+    "Migration to agents/mcp/server is omitted because the release explicitly retains the SDK v1 path currently used by the repository."
+  ]
+}

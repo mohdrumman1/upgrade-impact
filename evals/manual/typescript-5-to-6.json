@@ -1,0 +1,29 @@
+{
+  "risk": "medium",
+  "confidence": 0.78,
+  "summary": "TypeScript is a shared root tool invoked by all three applications and three buildable packages, so the 5-to-6 compiler change has repository-wide validation scope.",
+  "findings": [
+    {
+      "title": "Run every workspace compiler entry point",
+      "impact": "The root version supplies tsc to API, mobile, web, contracts, database, and domain scripts. A successful check in only one package would not cover the repository-wide compiler upgrade.",
+      "repositoryEvidence": [
+        "apps/api/package.json:7-11",
+        "apps/mobile/package.json:8-12",
+        "apps/web/package.json:7-11",
+        "packages/contracts/package.json:6-10",
+        "packages/database/package.json:7-11",
+        "packages/domain/package.json:6-10"
+      ],
+      "releaseEvidence": [
+        "https://github.com/microsoft/TypeScript/releases/tag/v6.0.3"
+      ],
+      "recommendedChecks": [
+        "Run the monorepo command that executes every listed typecheck plus the three package builds, and treat any newly surfaced diagnostic as a blocker until reviewed."
+      ]
+    }
+  ],
+  "omittedConcerns": [
+    "Specific TypeScript 6 breaking changes are omitted because the bounded release excerpt links to, but does not include, the migration details.",
+    "The safe-area downgrade in the same PR is not assessed as source usage because only its manifest declaration is supplied."
+  ]
+}

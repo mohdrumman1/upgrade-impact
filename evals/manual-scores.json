@@ -1,0 +1,27 @@
+{
+  "rubric": [
+    "correctness",
+    "relevance",
+    "actionability",
+    "evidence",
+    "brevity"
+  ],
+  "maximumPerCriterion": 2,
+  "cases": [
+    { "id": "next-14-to-15", "scores": [2, 2, 2, 2, 1], "total": 9 },
+    { "id": "rimraf-5-to-6", "scores": [2, 2, 2, 2, 2], "total": 10 },
+    { "id": "dependabot-dev-group", "scores": [2, 2, 2, 2, 1], "total": 9 },
+    { "id": "radix-switch-patch", "scores": [2, 2, 0, 2, 2], "total": 8 },
+    { "id": "concurrently-8-to-9", "scores": [2, 2, 2, 2, 2], "total": 10 },
+    { "id": "shared-tsconfig-major", "scores": [2, 2, 2, 2, 2], "total": 10 },
+    { "id": "storybook-6-to-7", "scores": [2, 2, 0, 2, 2], "total": 8 },
+    { "id": "biome-patch", "scores": [2, 2, 2, 2, 1], "total": 9 },
+    { "id": "actions-github-8-to-9", "scores": [2, 2, 2, 1, 2], "total": 9 },
+    { "id": "otel-node-large-zero-major", "scores": [2, 2, 0, 2, 2], "total": 8 },
+    { "id": "mozilla-otel-group", "scores": [2, 2, 2, 2, 1], "total": 9 },
+    { "id": "vite-react-plugin-major", "scores": [2, 2, 2, 1, 2], "total": 9 },
+    { "id": "typescript-5-to-6", "scores": [2, 2, 2, 1, 2], "total": 9 },
+    { "id": "react-native-safe-area-major", "scores": [2, 2, 2, 2, 2], "total": 10 },
+    { "id": "agents-large-zero-major", "scores": [2, 2, 2, 2, 2], "total": 10 }
+  ]
+}

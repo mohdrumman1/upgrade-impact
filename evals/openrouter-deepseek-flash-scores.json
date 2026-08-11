@@ -1,0 +1,23 @@
+{
+  "provider": "openrouter-deepseek-flash",
+  "model": "deepseek/deepseek-v4-flash",
+  "rubric": ["correctness", "relevance", "actionability", "evidence", "brevity"],
+  "maximumPerCriterion": 2,
+  "cases": [
+    { "id": "next-14-to-15", "scores": [2, 2, 0, 2, 2], "total": 8, "useful": false, "unsupportedMaterialClaim": false, "note": "Safe evidence-gap omission, but no actionable result." },
+    { "id": "concurrently-8-to-9", "scores": [1, 1, 1, 2, 1], "total": 6, "useful": false, "unsupportedMaterialClaim": true, "note": "Raises programmatic-import and Node-runtime concerns without repository evidence for either." },
+    { "id": "rimraf-5-to-6", "scores": [2, 2, 2, 2, 2], "total": 10, "useful": true, "unsupportedMaterialClaim": false, "note": "Correctly links the Node 20 floor to observed clean-script usage." },
+    { "id": "actions-github-8-to-9", "scores": [2, 2, 2, 2, 2], "total": 10, "useful": true, "unsupportedMaterialClaim": false, "note": "Correctly catches the removed ncc dependency still used by the build script." },
+    { "id": "shared-tsconfig-major", "scores": [2, 2, 2, 2, 2], "total": 10, "useful": true, "unsupportedMaterialClaim": false, "note": "Specific preset usage and compiler check are supported." },
+    { "id": "otel-node-large-zero-major", "scores": [1, 1, 1, 2, 1], "total": 6, "useful": false, "unsupportedMaterialClaim": true, "note": "Turns sparse boundary evidence into speculative fixture and configuration findings." },
+    { "id": "storybook-6-to-7", "scores": [2, 2, 0, 2, 2], "total": 8, "useful": false, "unsupportedMaterialClaim": false, "note": "Correct safe omission, but no actionable value." },
+    { "id": "mozilla-otel-group", "scores": [2, 1, 1, 2, 1], "total": 7, "useful": true, "unsupportedMaterialClaim": false, "note": "Evidence-safe but padded with no-impact and future-migration findings." },
+    { "id": "vite-react-plugin-major", "scores": [1, 1, 2, 2, 1], "total": 7, "useful": true, "unsupportedMaterialClaim": true, "note": "One relevant dedupe concern, one questionable node_modules interpretation, and it misses stale generator versions." },
+    { "id": "typescript-5-to-6", "scores": [1, 1, 2, 1, 1], "total": 6, "useful": true, "unsupportedMaterialClaim": true, "note": "Generic compiler advice plus unsupported safe-area API extrapolation." },
+    { "id": "react-native-safe-area-major", "scores": [2, 2, 1, 2, 2], "total": 9, "useful": true, "unsupportedMaterialClaim": false, "note": "Correctly confirms the declared React Native version clears the new floor." },
+    { "id": "agents-large-zero-major", "scores": [0, 1, 1, 2, 1], "total": 5, "useful": false, "unsupportedMaterialClaim": true, "note": "Misses the documented legacy-path compatibility and speculates about agentTool usage not shown." },
+    { "id": "dependabot-dev-group", "scores": [1, 2, 2, 1, 1], "total": 7, "useful": true, "unsupportedMaterialClaim": true, "note": "The Miniflare check is useful; the claimed Wrangler compatibility requirement is not established." },
+    { "id": "biome-patch", "scores": [1, 0, 1, 2, 1], "total": 5, "useful": false, "unsupportedMaterialClaim": true, "note": "Findings explicitly lack matching Promise or CSS repository usage." },
+    { "id": "radix-switch-patch", "scores": [2, 2, 0, 2, 2], "total": 8, "useful": false, "unsupportedMaterialClaim": false, "note": "Correct safe omission, but no actionable value." }
+  ]
+}

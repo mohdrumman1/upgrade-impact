@@ -1,0 +1,22 @@
+{
+  "risk": "medium",
+  "confidence": 0.93,
+  "summary": "The repository directly extends the upgraded webpack preset, and version 2 requires TypeScript 5 because it enables verbatim module syntax.",
+  "findings": [
+    {
+      "title": "Compile with the TypeScript 5 preset",
+      "impact": "The root TypeScript configuration inherits the package's webpack preset, so the version 2 TypeScript 5 and verbatim-module-syntax requirement applies directly to this build configuration.",
+      "repositoryEvidence": [
+        "tsconfig.json:2",
+        "package.json:47"
+      ],
+      "releaseEvidence": [
+        "https://github.com/bbeesley/tsconfig/releases/tag/v2.0.0"
+      ],
+      "recommendedChecks": [
+        "Run the existing TypeScript lint and webpack compilation with TypeScript 5, checking for imports that must be marked type-only under verbatim module syntax."
+      ]
+    }
+  ],
+  "omittedConcerns": []
+}

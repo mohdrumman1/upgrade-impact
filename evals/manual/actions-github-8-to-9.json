@@ -1,0 +1,24 @@
+{
+  "risk": "high",
+  "confidence": 0.94,
+  "summary": "The build script still invokes ncc even though this change removes @vercel/ncc and adds esbuild, so the checked-in build command and dependency set are inconsistent.",
+  "findings": [
+    {
+      "title": "Removed bundler is still called by build",
+      "impact": "The only supplied build command runs ncc, but this dependency change removes @vercel/ncc. Unless another unshown tool supplies that binary, a clean install will leave the build command unable to resolve its declared bundler.",
+      "repositoryEvidence": [
+        "package.json:5-9"
+      ],
+      "releaseEvidence": [
+        "https://github.com/vercel/ncc/releases/tag/0.38.4"
+      ],
+      "recommendedChecks": [
+        "From a clean install, run the existing build script and require the PR to update that script to the intended esbuild command before removing ncc."
+      ]
+    }
+  ],
+  "omittedConcerns": [
+    "The @actions/github 8-to-9 migration is omitted because no bounded official evidence was acquired for it.",
+    "No esbuild behavior is claimed because the supplied repository evidence contains no esbuild command or configuration."
+  ]
+}

@@ -1,0 +1,39 @@
+name: UpgradeImpact
+description: Posts repository-specific, evidence-backed npm dependency upgrade impact reports.
+author: Forma AI
+branding:
+  icon: alert-triangle
+  color: purple
+inputs:
+  github-token:
+    description: GitHub token with read-only contents and permission to write pull-request comments.
+    required: true
+  openrouter-api-key:
+    description: OpenRouter API key used only when deterministic applicability edges require synthesis.
+    required: false
+  max-usd:
+    description: Hard maximum model spend per report, capped by the Action at US$0.05.
+    required: false
+    default: "0.02"
+  state-directory:
+    description: Runner-local directory for resumable pipeline artifacts.
+    required: false
+    default: .upgrade-impact
+  post-comment:
+    description: Whether to create or update the UpgradeImpact pull-request comment.
+    required: false
+    default: "true"
+outputs:
+  run-id:
+    description: Stable identifier for this repository, pull request, and head revision.
+  report-path:
+    description: Absolute path to the verified Markdown report.
+  cache-hit:
+    description: Whether an existing verified report was reused.
+  comment-operation:
+    description: created, updated, or skipped.
+  spend-usd:
+    description: Provider-reported model spend for this run.
+runs:
+  using: node24
+  main: action/index.js

@@ -1,0 +1,10 @@
+{
+  "risk": "unknown",
+  "confidence": 0.32,
+  "summary": "The manifest upgrades Radix Switch from 1.3.5 to 1.3.7, but no component usage or bounded official release evidence is available to establish repository-specific impact.",
+  "findings": [],
+  "omittedConcerns": [
+    "Patch-level behavior changes are omitted because no official release or changelog excerpt was found.",
+    "Runtime impact is omitted because the only repository evidence is the dependency declaration, not Switch component usage."
+  ]
+}

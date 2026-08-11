@@ -1,0 +1,19 @@
+{
+  "cases": [
+    { "id": "next-14-to-15", "outcome": "matched", "edge": { "kind": "dependency", "concept": "next", "rule": "exact-concept" } },
+    { "id": "concurrently-8-to-9", "outcome": "matched", "edge": { "kind": "version-constraint", "concept": "node", "rule": "below-minimum" } },
+    { "id": "rimraf-5-to-6", "outcome": "matched", "edge": { "kind": "version-constraint", "concept": "node", "rule": "below-minimum" } },
+    { "id": "actions-github-8-to-9", "outcome": "deterministic-preflight", "reason": "The useful issue is a removed dependency still invoked by a script, not a release-fact relationship." },
+    { "id": "shared-tsconfig-major", "outcome": "matched", "edge": { "kind": "version-constraint", "concept": "typescript", "rule": "satisfies-minimum" } },
+    { "id": "otel-node-large-zero-major", "outcome": "safe-omission" },
+    { "id": "storybook-6-to-7", "outcome": "safe-omission" },
+    { "id": "mozilla-otel-group", "outcome": "matched", "edge": { "kind": "api-symbol", "concept": "@opentelemetry/sdk-trace-node#SimpleSpanProcessor", "rule": "exact-concept" } },
+    { "id": "vite-react-plugin-major", "outcome": "matched", "edge": { "kind": "dependency", "concept": "@vitejs/plugin-react", "rule": "exact-concept" } },
+    { "id": "typescript-5-to-6", "outcome": "matched", "edge": { "kind": "dependency", "concept": "typescript", "rule": "exact-concept" } },
+    { "id": "react-native-safe-area-major", "outcome": "matched", "edge": { "kind": "version-constraint", "concept": "react-native", "rule": "satisfies-minimum" } },
+    { "id": "agents-large-zero-major", "outcome": "matched", "edge": { "kind": "api-symbol", "concept": "agents#McpAgent", "rule": "exact-concept" } },
+    { "id": "dependabot-dev-group", "outcome": "matched", "edge": { "kind": "dependency", "concept": "@cloudflare/vitest-pool-workers", "rule": "exact-concept" } },
+    { "id": "biome-patch", "outcome": "matched", "edge": { "kind": "dependency", "concept": "@biomejs/biome", "rule": "exact-concept" } },
+    { "id": "radix-switch-patch", "outcome": "safe-omission" }
+  ]
+}

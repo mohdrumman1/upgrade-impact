@@ -1,0 +1,31 @@
+objective: "Validate and build the smallest useful npm dependency-impact reporter"
+status: in_progress
+budget_aud: 500
+spent_aud: 0
+spent_model_usd_recorded: 0.464451
+current_gate: github_action
+steps:
+  - id: foundation
+    description: "Create repository, durable context, deterministic manifest comparison, and tests"
+    status: completed
+  - id: manual_eval
+    description: "Run 15 historical public dependency PRs through a manual structured analysis"
+    status: completed
+    progress: "15 of 15 reports scored; 9.133/10 mean; 12 of 15 add repository-specific value; three safe omissions; deterministic schema, citation, and score validation passes"
+  - id: quality_gate
+    description: "Score correctness, relevance, evidence, actionability, brevity, and cost"
+    status: completed
+    progress: "OpenRouter OpenAI Mini v2 passes at 9.267/10 mean, 12/15 useful reports, zero unsupported material claims, and US$0.048979 for 15 reports; DeepSeek Flash v2 was rejected"
+  - id: github_action
+    description: "Package the proven pipeline as a free GitHub Action"
+    status: in_progress
+    progress: "Arbitrary public PR acquisition, stage resume, safe target-event validation, zero-edge model skip, actual Action entry point, and one-comment upsert pass locally and on owned public fixture PR #1; dedicated public repository and GitHub-hosted run remain"
+  - id: hosted_beta
+    description: "Add minimal hosted analysis and usage metering only if the eval passes"
+    status: pending
+  - id: billing
+    description: "Add self-serve billing only after repeated beta usage"
+    status: pending
+open_decisions:
+  - "Private excerpt retention window before hosted beta"
+next_action: "Publish the verified snapshot to a dedicated public beta Action repository, run it through GitHub-hosted Actions on the owned public fixture, and prepare Marketplace metadata only after that run passes"
